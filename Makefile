@@ -61,7 +61,7 @@ env: dont-run-as-root
 		echo "$(BLACKOPS_ENV_VAR_NAME) was set";\
 	fi
 	#addid PIP3 HOME to path
-	if grep "PATH*$(PIP3_HOME)" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+	if grep "export PATH=.*$(PIP3_HOME)" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
 		echo "$(PIP3_HOME) already on path";\
 	else\
 		echo "export PATH=$(PIP3_HOME):$$PATH" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
