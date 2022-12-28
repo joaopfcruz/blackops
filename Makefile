@@ -58,6 +58,7 @@ env: dont-run-as-root
 		echo "$(BLACKOPS_ENV_VAR_NAME) already set";\
 	else\
 		echo "export $(BLACKOPS_ENV_VAR_NAME)=$(BLACKOPS_ENV_VAR_VALUE)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+		export $(BLACKOPS_ENV_VAR_NAME)=$(BLACKOPS_ENV_VAR_VALUE);\
 		echo "$(BLACKOPS_ENV_VAR_NAME) was set";\
 	fi
 	#addid PIP3 HOME to path
@@ -65,6 +66,7 @@ env: dont-run-as-root
 		echo "$(PIP3_HOME) already on path";\
 	else\
 		echo "export PATH=$(PIP3_HOME):$$PATH" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+		export PATH=$(PIP3_HOME):$$PATH;\
 		echo "$(PIP3_HOME) was added to path";\
 	fi
 	#Creating main folder of BlackOps project
@@ -253,6 +255,7 @@ wpscan-setup: dont-run-as-root
 	sudo apt -y install wpscan
 	@read -p "WPScan API token: " wpscan_api_token;\
 	echo "export $(WPSCAN_API_TOKEN_VAR_NAME)=$$wpscan_api_token" >> $(SHELL_ENV_FILE)
+	export $(WPSCAN_API_TOKEN_VAR_NAME)=$$wpscan_api_token
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wpscan
 	cp -R etc/wpscan $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wpscan/*.sh
@@ -279,7 +282,7 @@ cloud_enum-setup: dont-run-as-root
 #Configure nuclei
 nuclei-setup: dont-run-as-root
 	echo "Configuring nuclei..."
-	sudo apt install nuclei
+	sudo apt -y install nuclei
 	nuclei -ut
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/nuclei
 	cp -R etc/nuclei $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
