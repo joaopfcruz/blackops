@@ -280,7 +280,6 @@ cloud_enum-setup: dont-run-as-root
 nuclei-setup: dont-run-as-root
 	echo "Configuring nuclei..."
 	sudo apt install nuclei
-	nuclei
 	nuclei -ut
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/nuclei
 	cp -R etc/nuclei $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
