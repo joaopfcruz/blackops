@@ -252,7 +252,7 @@ wpscan-setup: dont-run-as-root
 	echo "Configuring wpscan..."
 	sudo apt -y install wpscan
 	@read -p "WPScan API token: " wpscan_api_token;\
-	echo "export $(WPSCAN_API_TOKEN_VAR_NAME)=$$wpscan_api_token" >> $(SHELL_ENV_FILE)
+	echo "export $(WPSCAN_API_TOKEN_VAR_NAME)=$$wpscan_api_token" >> "$(USER_HOME)/$(SHELL_ENV_FILE)"
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wpscan
 	cp -R etc/wpscan $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wpscan/*.sh
