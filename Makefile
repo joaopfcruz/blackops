@@ -195,6 +195,9 @@ get-payloads: dont-run-as-root
 	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/XXE Injection/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_XXE_FOLDER)
 	rm -f $(PAYLOADSALLTHETHINGS_TMP_ZIP)
 	
+	###get seclists###
+	sudo apt -y install seclists
+	
 
 #Configure recon-ng
 recon-ng-setup: dont-run-as-root
