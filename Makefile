@@ -3,7 +3,9 @@
 # 1: Create new section of commands
 # 2: Add the section name in the "all" directive separated by a space
 # 3: Add the section name in  the ".PHONY" directive separated by a space
-SHELL_ENV_FILE = "~/.zshrc"
+USER_HOME = "/home/blackops"
+WHOAMI = "blackops"
+SHELL_ENV_FILE = ".zshrc"
 
 BLACKOPS_ENV_VAR_NAME = "BLACKOPS_HOMEDIR"
 BLACKOPS_ENV_VAR_VALUE = "/opt/blackops"
@@ -26,8 +28,6 @@ PAYLOADSALLTHETHINGS_TMP_ZIP = "/tmp/patt.zip"
 
 WPSCAN_API_TOKEN_VAR_NAME = "WPSCAN_API_TOKEN"
 
-WHOAMI = "$$(whoami)"
-
 #A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed
 .PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup
 #quiet make
@@ -46,16 +46,16 @@ dont-run-as-root:
 env: dont-run-as-root
 	echo "Creating environment..."
 	#creating BLACKOPS main env var
-	if test -f $(SHELL_ENV_FILE); then\
-		echo "$($(SHELL_ENV_FILE)) file already exists";\
+	if test -f "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+		echo "$(USER_HOME)/$(SHELL_ENV_FILE) file already exists";\
 	else\
-		echo "Creating $(SHELL_ENV_FILE) file";\
-		touch $(SHELL_ENV_FILE);\
+		echo "Creating $(USER_HOME)/$(SHELL_ENV_FILE) file";\
+		touch "$(USER_HOME)/$(SHELL_ENV_FILE)";\
 	fi
-	if grep "export $(BLACKOPS_ENV_VAR_NAME)=" $(SHELL_ENV_FILE); then\
+	if grep "export $(BLACKOPS_ENV_VAR_NAME)=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
 		echo "$(BLACKOPS_ENV_VAR_NAME) already set";\
 	else\
-		echo "export $(BLACKOPS_ENV_VAR_NAME)=$(BLACKOPS_ENV_VAR_VALUE)" >> $(SHELL_ENV_FILE);\
+		echo "export $(BLACKOPS_ENV_VAR_NAME)=$(BLACKOPS_ENV_VAR_VALUE)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
 		echo "$(BLACKOPS_ENV_VAR_NAME) was set";\
 	fi
 	#Creating main folder of BlackOps project
@@ -190,7 +190,7 @@ get-payloads: dont-run-as-root
 #Configure recon-ng
 recon-ng-setup: dont-run-as-root
 	echo "Configuring recon-ng..."
-	sudo apt install recon-ng
+	sudo apt -y install recon-ng
 	echo "marketplace install recon/domains-hosts/hackertarget" > /tmp/recon-ng.setup
 	echo "marketplace install recon/domains-hosts/certificate_transparency" >> /tmp/recon-ng.setup
 	echo "marketplace install recon/domains-hosts/mx_spf_ip" >> /tmp/recon-ng.setup
@@ -225,7 +225,7 @@ shodan-setup: dont-run-as-root
 #Configure gobuster
 gobuster-setup: dont-run-as-root
 	echo "Configuring gobuster..."
-	sudo apt install gobuster
+	sudo apt -y install gobuster
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/gobuster
 	cp -R etc/gobuster $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/gobuster/*.sh
@@ -233,7 +233,7 @@ gobuster-setup: dont-run-as-root
 #Configure whatweb
 whatweb-setup: dont-run-as-root
 	echo "Configuring whatweb..."
-	sudo apt install whatweb
+	sudo apt -y install whatweb
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/whatweb
 	cp -R etc/whatweb $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/whatweb/*.sh
@@ -241,7 +241,7 @@ whatweb-setup: dont-run-as-root
 #Configure wpscan
 wpscan-setup: dont-run-as-root
 	echo "Configuring wpscan..."
-	sudo apt install wpscan
+	sudo apt -y install wpscan
 	@read -p "WPScan API token: " wpscan_api_token;\
 	echo "export $(WPSCAN_API_TOKEN_VAR_NAME)=$$wpscan_api_token" >> $(SHELL_ENV_FILE)
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wpscan
