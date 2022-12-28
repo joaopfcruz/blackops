@@ -1,6 +1,7 @@
 # blackops
 
 How to install:
+
 (1) As Root:
   chmod +x init_vm_run_as_root.sh && ./init_vm_run_as_root.sh
 
