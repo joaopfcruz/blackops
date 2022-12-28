@@ -6,7 +6,7 @@
 WHOAMI = "blackops"
 USER_HOME = "/home/blackops"
 PIP3_HOME = "/home/blackops/.local/bin"
-SHELL_ENV_FILE = ".zshrc"
+SHELL_ENV_FILE = ".bashrc"
 
 
 BLACKOPS_ENV_VAR_NAME = "BLACKOPS_HOMEDIR"
