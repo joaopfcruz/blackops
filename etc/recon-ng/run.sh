@@ -2,7 +2,7 @@
 #This script runs all recon-ng modules
 #arguments <WORKSPACE> <DOMAIN>
 
-usage() { echo "Usage: $0 -w <recon-ng workspace> -d <domain>" 1>&2; exit 0; }
+usage() { echo "Usage: $0 -w <workspace> -d <domain>" 1>&2; exit 0; }
 
 while getopts ":w:d:" flags; do
         case "${flags}" in
