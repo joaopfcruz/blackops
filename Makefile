@@ -3,9 +3,11 @@
 # 1: Create new section of commands
 # 2: Add the section name in the "all" directive separated by a space
 # 3: Add the section name in  the ".PHONY" directive separated by a space
-USER_HOME = "/home/blackops"
 WHOAMI = "blackops"
+USER_HOME = "/home/blackops"
+PIP3_HOME = "/home/blackops/.local/bin"
 SHELL_ENV_FILE = ".zshrc"
+
 
 BLACKOPS_ENV_VAR_NAME = "BLACKOPS_HOMEDIR"
 BLACKOPS_ENV_VAR_VALUE = "/opt/blackops"
@@ -57,6 +59,13 @@ env: dont-run-as-root
 	else\
 		echo "export $(BLACKOPS_ENV_VAR_NAME)=$(BLACKOPS_ENV_VAR_VALUE)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
 		echo "$(BLACKOPS_ENV_VAR_NAME) was set";\
+	fi
+	#addid PIP3 HOME to path
+	if grep "PATH*$(PIP3_HOME)" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+		echo "$(PIP3_HOME) already on path";\
+	else\
+		echo "export PATH=$(PIP3_HOME):$$PATH" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+		echo "$(PIP3_HOME) was added to path";\
 	fi
 	#Creating main folder of BlackOps project
 	if test -d $(BLACKOPS_ENV_VAR_VALUE); then\
