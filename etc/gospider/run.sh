@@ -24,7 +24,7 @@ sanitized_url=$(sed -e "s/[^A-Za-z0-9._-]/_/g" <<< "$url")
 BLACKOPS_DATA_FOLDER="${BLACKOPS_HOMEDIR}/data"
 OUTPUT_ORG_FOLDER="${BLACKOPS_DATA_FOLDER}/${workspace}"
 OUTPUT_SCANNING_FOLDER="${OUTPUT_ORG_FOLDER}/scanning"
-OUTPUT_FILENAME="gospider.out.${sanitized_url}.$(date +'%Y_%m_%dT%H_%M_%S').json"
+OUTPUT_FILENAME="gospider_urlessd.out.${sanitized_url}.$(date +'%Y_%m_%dT%H_%M_%S').json"
 
 if [ -z "${workspace}" ] || [ -z "${url}" ]; then
 	usage
@@ -61,6 +61,6 @@ if ! [ -d "${OUTPUT_SCANNING_FOLDER}" ]; then
 fi
 
 #run:
-gospider -s ${url} -u web -t 32 --subs --other-source --include-subs --sitemap --robots -q --json > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
+gospider -s ${url} -u web -t 16 --subs --include-other-source --include-subs --sitemap --robots -q | python3 urless/urless.py | egrep -v "^\[url\].*" > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
 #compress output (saving space ftw!)
 bzip2 -z "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
