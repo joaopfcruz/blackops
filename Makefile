@@ -64,19 +64,19 @@ env: dont-run-as-root
 		echo "$(BLACKOPS_ENV_VAR_NAME) was set";\
 	fi
 	#creating GOPATH env var
-	if grep "export GOPATH=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
-		echo "GOPATH already set";\
-	else\
-		echo "export GOPATH=$(USER_HOME)/go" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
-		echo "GOPATH was set";\
-	fi
+	#if grep "export GOPATH=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+	#	echo "GOPATH already set";\
+	#else\
+	#	echo "export GOPATH=$(USER_HOME)/go" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+	#	echo "GOPATH was set";\
+	#fi
 	#creating GOROOT env var
-	if grep "export GOROOT=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
-		echo "GOROOT already set";\
-	else\
-		echo "export GOROOT=$(GOROOT)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
-		echo "GOROOT was set";\
-	fi
+	#if grep "export GOROOT=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+	#	echo "GOROOT already set";\
+	#else\
+	#	echo "export GOROOT=$(GOROOT)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+	#	echo "GOROOT was set";\
+	#fi
 	#adding some paths to $PATH
 	echo "export PATH=$(PIP3_HOME):$(USER_HOME)/go/bin:$(GOROOT)/bin:$$PATH" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
 	echo "additional paths were added to PATH";\
