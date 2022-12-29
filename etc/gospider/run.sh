@@ -61,6 +61,6 @@ if ! [ -d "${OUTPUT_SCANNING_FOLDER}" ]; then
 fi
 
 #run:
-gospider -s ${url} -u web -t 10 --subs --other-source --include-subs --sitemap --robots -q --json > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
+gospider -s ${url} -u web -t 32 --subs --other-source --include-subs --sitemap --robots -q --json > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
 #compress output (saving space ftw!)
 bzip2 -z "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
