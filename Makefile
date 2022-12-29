@@ -5,7 +5,10 @@
 # 3: Add the section name in  the ".PHONY" directive separated by a space
 WHOAMI = "blackops"
 USER_HOME = "/home/blackops"
+
 PIP3_HOME = "/home/blackops/.local/bin"
+GOROOT= "/usr/lib/go"
+
 SHELL_ENV_FILE = ".bashrc"
 
 
@@ -60,13 +63,24 @@ env: dont-run-as-root
 		echo "export $(BLACKOPS_ENV_VAR_NAME)=$(BLACKOPS_ENV_VAR_VALUE)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
 		echo "$(BLACKOPS_ENV_VAR_NAME) was set";\
 	fi
-	#addid PIP3 HOME to path
-	if grep "export PATH=.*$(PIP3_HOME)" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
-		echo "$(PIP3_HOME) already on path";\
+	#creating GOPATH env var
+	if grep "export GOPATH=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+		echo "GOPATH already set";\
 	else\
-		echo "export PATH=$(PIP3_HOME):$$PATH" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
-		echo "$(PIP3_HOME) was added to path";\
+		echo "export GOPATH=$(USER_HOME)/go" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+		echo "GOPATH was set";\
 	fi
+	#creating GOROOT env var
+	if grep "export GOROOT=" "$(USER_HOME)/$(SHELL_ENV_FILE)"; then\
+		echo "GOROOT already set";\
+	else\
+		echo "export GOROOT=$(GOROOT)" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+		echo "GOROOT was set";\
+	fi
+	#adding some paths to $PATH
+	echo "export PATH=$(PIP3_HOME):$(USER_HOME)/go/bin:$(GOROOT)/bin:$$PATH" >> "$(USER_HOME)/$(SHELL_ENV_FILE)";\
+	echo "additional paths were added to PATH";\
+	
 	#Creating main folder of BlackOps project
 	if test -d $(BLACKOPS_ENV_VAR_VALUE); then\
 		echo "$(BLACKOPS_ENV_VAR_NAME) folder already exists";\
