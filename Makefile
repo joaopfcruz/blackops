@@ -197,6 +197,7 @@ get-payloads: dont-run-as-root
 	
 	###get seclists###
 	sudo apt -y install seclists
+	ln -s /usr/share/seclists/ $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)
 	
 
 #Configure recon-ng
