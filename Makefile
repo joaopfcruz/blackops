@@ -9,7 +9,7 @@ USER_HOME = "/home/blackops"
 PIP3_HOME = "/home/blackops/.local/bin"
 GOROOT= "/usr/lib/go"
 
-SHELL_ENV_FILE = ".bashrc"
+SHELL_ENV_FILE = ".profile"
 
 
 BLACKOPS_ENV_VAR_NAME = "BLACKOPS_HOMEDIR"
