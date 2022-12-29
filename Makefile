@@ -307,6 +307,12 @@ nuclei-setup: dont-run-as-root
 gospider-setup: dont-run-as-root
 	echo "Configuring gospider..."
 	go install github.com/jaeles-project/gospider@latest
+	rm -rf /etc/gospider/urless
+	git clone https://github.com/xnl-h4ck3r/urless.git /etc/gospider
+	pip3 install urlparse3
+	pip3 install termcolor
+	pip3 install pyyaml
+	pip3 install argparse
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/gospider
 	cp -R etc/gospider $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/gospider/*.sh
