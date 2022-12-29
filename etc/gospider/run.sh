@@ -61,6 +61,6 @@ if ! [ -d "${OUTPUT_SCANNING_FOLDER}" ]; then
 fi
 
 #run:
-gospider -s ${url} -u web -t 16 --subs --include-other-source --include-subs --sitemap --robots -q | python3 urless/urless.py | egrep -v "^\[url\].*" > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
+gospider -s ${url} -u web -t 16 --subs --other-source --include-subs --sitemap --robots -q | python3 urless/urless.py | egrep -v "^\[url\].*" > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
 #compress output (saving space ftw!)
 bzip2 -z "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
