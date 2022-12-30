@@ -67,7 +67,7 @@ if ! [ -d "${OUTPUT_EXPLOITING_FOLDER}" ]; then
 fi
 
 #run:
-cat ${BLACKOPS_PAYLOADS_FOLDER}/xss/* ${BLACKOPS_PAYLOADS_FOLDER}/seclists/Fuzzing/XSS-Fuzzing ${BLACKOPS_PAYLOADS_FOLDER}/seclists/Fuzzing/XSS/* | sort | uniq -u > "${TMP_PAYLOAD_FILE}"
+cat ${BLACKOPS_PAYLOADS_FOLDER}/xss/* ${BLACKOPS_PAYLOADS_FOLDER}/seclists/Fuzzing/XSS-Fuzzing ${BLACKOPS_PAYLOADS_FOLDER}/seclists/Fuzzing/XSS/* | sort -u > "${TMP_PAYLOAD_FILE}"
 for i in {1..5}
 do
         OUTPUT_FILENAME="dalfox.run${i}.out.${sanitized_url::64}.$(date +'%Y_%m_%dT%H_%M_%S').json"
