@@ -115,6 +115,7 @@ env: dont-run-as-root
 #Download payloads
 get-payloads: dont-run-as-root
 	echo "Downloading payloads..."
+	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/*
 	#Create required folders to drop payloads
 	#cmd injection payloads folder
 	if test -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_CMDINJECTION_FOLDER); then\
