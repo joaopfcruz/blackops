@@ -303,12 +303,12 @@ nuclei-setup: dont-run-as-root
 	cp -R etc/nuclei $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/nuclei/*.sh
 	
-#Configure gau
+#Configure gospider (with urless for de-cluttering duplicate URLs)
 gospider-setup: dont-run-as-root
 	echo "Configuring gospider..."
 	go install github.com/jaeles-project/gospider@latest
-	rm -rf /etc/gospider/urless
-	git clone https://github.com/xnl-h4ck3r/urless.git /etc/gospider
+	rm -rf etc/gospider/urless
+	git clone https://github.com/xnl-h4ck3r/urless.git etc/gospider/urless
 	pip3 install urlparse3
 	pip3 install termcolor
 	pip3 install pyyaml
