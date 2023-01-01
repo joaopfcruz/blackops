@@ -60,7 +60,7 @@ if ! [ -d "${OUTPUT_SCANNING_FOLDER}" ]; then
 fi
 
 #run:
-sudo nmap -Pn -F --script default,vuln,exploit,intrusive ${target} -oX "${TMP_OUTPUT_FILENAME}"
+sudo nmap -Pn -F --script default,vuln,exploit ${target} -oX "${TMP_OUTPUT_FILENAME}"
 nmap2json convert "${TMP_OUTPUT_FILENAME}" > "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
 #compress output (saving space ftw!)
 bzip2 -z "${OUTPUT_SCANNING_FOLDER}/${OUTPUT_FILENAME}"
