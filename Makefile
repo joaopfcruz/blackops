@@ -34,12 +34,12 @@ PAYLOADSALLTHETHINGS_TMP_ZIP = "/tmp/patt.zip"
 WPSCAN_API_TOKEN_VAR_NAME = "WPSCAN_API_TOKEN"
 
 #A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed
-.PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup
+.PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup
 #quiet make
 .SILENT:
 
 #Run all directives (except env which should run separately)
-all: get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup
+all: get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup
 
 dont-run-as-root:
 	if id -u | egrep -q "^0$$"; then\
@@ -333,3 +333,12 @@ dalfox-setup: dont-run-as-root
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/dalfox
 	cp -R etc/dalfox $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/dalfox/*.sh
+	
+#Configure nmap
+nmap-setup: dont-run-as-root
+	echo "Configuring nmap..."
+	sudo apt -y install nmap
+	sudo gem install nmap2json
+	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/nmap
+	cp -R etc/nmap $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
+	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/nmap/*.sh
