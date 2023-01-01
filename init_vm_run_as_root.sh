@@ -4,6 +4,7 @@ touch ~/.hushlogin
 echo "127.0.0.1 $(hostname)" >> /etc/hosts
 printf "LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" > /etc/default/locale
 useradd -d /home/blackops -m -G sudo -s /bin/bash -p "\$6\$MUqx/xpb7L4a1Yl2\$ClfzkoicrRyJsAiXRbLuG8NonKQI7cUgpwOhQr7QJnwt2mZkmQHDGisoBHiXfqzEM3DFscpHc6hDtMak1ff3H/" blackops
+echo "blackops ALL = NOPASSWD: /usr/bin/nmap, /usr/bin/apt -y install, /usr/bin/gem install, /usr/bin/mkdir, /usr/bin/chown" >> /etc/sudoers
 sudo -u blackops touch /home/blackops/.hushlogin
 apt update
 apt -y install unzip
