@@ -360,10 +360,10 @@ sqlmap-setup: dont-run-as-root
 #Configure paramspider
 paramspider-setup: dont-run-as-root
 	echo "Configuring paramspider..."
-	rm -rf etc/paramspider/bin
-	git clone https://github.com/devanshbatham/ParamSpider etc/paramspider/bin
-	cd etc/paramspider/bin;\
+	rm -rf etc/ParamSpider/bin
+	git clone https://github.com/devanshbatham/ParamSpider etc/ParamSpider/bin
+	cd etc/ParamSpider/bin;\
 	pip3 install -r requirements.txt
-	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/paramspider
-	cp -R etc/paramspider $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
-	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/paramspider/*.sh
+	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/ParamSpider
+	cp -R etc/ParamSpider $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
+	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/ParamSpider/*.sh
