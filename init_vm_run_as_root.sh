@@ -14,6 +14,7 @@ apt -y install bzip2
 apt -y install make
 apt -y install golang-go
 apt -y install ruby
+apt -y install metasploit-framework
 rm -rf /home/blackops/blackops_repo
 git clone https://github.com/joaopfcruz/blackops.git /home/blackops/blackops_repo
 chown -R blackops:blackops /home/blackops/blackops_repo
