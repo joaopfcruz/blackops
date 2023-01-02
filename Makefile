@@ -34,12 +34,12 @@ PAYLOADS_TMP_ZIP = "/tmp/payltmp.zip"
 WPSCAN_API_TOKEN_VAR_NAME = "WPSCAN_API_TOKEN"
 
 #A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed
-.PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup sqlmap-setup
+.PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup sqlmap-setup paramspider-setup
 #quiet make
 .SILENT:
 
 #Run all directives (except env which should run separately)
-all: get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup sqlmap-setup
+all: get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup sqlmap-setup paramspider-setup
 
 dont-run-as-root:
 	if id -u | egrep -q "^0$$"; then\
@@ -356,3 +356,14 @@ sqlmap-setup: dont-run-as-root
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/sqlmap
 	cp -R etc/sqlmap $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/sqlmap/*.sh
+
+#Configure paramspider
+paramspider-setup: dont-run-as-root
+	echo "Configuring paramspider..."
+	rm -rf etc/paramspider/bin
+	git clone https://github.com/devanshbatham/ParamSpider etc/paramspider/bin
+	cd etc/paramspider/bin;\
+	pip3 install -r requirements.txt
+	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/paramspider
+	cp -R etc/paramspider $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
+	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/paramspider/*.sh
