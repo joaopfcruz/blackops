@@ -29,7 +29,7 @@ BLACKOPS_PAYL_SQLINJECTION_FOLDER = "sql_injection"
 BLACKOPS_PAYL_SSTI_FOLDER = "ssti"
 BLACKOPS_PAYL_XSS_FOLDER = "xss"
 BLACKOPS_PAYL_XXE_FOLDER = "xxe"
-PAYLOADSALLTHETHINGS_TMP_ZIP = "/tmp/patt.zip"
+PAYLOADS_TMP_ZIP = "/tmp/payltmp.zip"
 
 WPSCAN_API_TOKEN_VAR_NAME = "WPSCAN_API_TOKEN"
 
@@ -196,24 +196,34 @@ get-payloads: dont-run-as-root
 	fi
 	
 	### get payloads from github.com/swisskyrepo/PayloadsAllTheThings ###
-	wget -O $(PAYLOADSALLTHETHINGS_TMP_ZIP) https://github.com/swisskyrepo/PayloadsAllTheThings/archive/refs/heads/master.zip
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/Command Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_CMDINJECTION_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/Directory Traversal/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_DIRTRAVERSAL_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/File Inclusion/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_FILEINCLUSION_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/Insecure Management Interface/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_INSERCUREMGMTIFACE_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/LDAP Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_LDAPINJECTION_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/NoSQL Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_NOSQLINJECTION_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/Open Redirect/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_OPENREDIRECT_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/SQL Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_SQLINJECTION_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/Server Side Template Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_SSTI_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/XSS Injection/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_XSS_FOLDER)
-	unzip -oj $(PAYLOADSALLTHETHINGS_TMP_ZIP) "PayloadsAllTheThings-master/XXE Injection/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_XXE_FOLDER)
-	rm -f $(PAYLOADSALLTHETHINGS_TMP_ZIP)
+	wget -O $(PAYLOADS_TMP_ZIP) https://github.com/swisskyrepo/PayloadsAllTheThings/archive/refs/heads/master.zip
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/Command Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_CMDINJECTION_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/Directory Traversal/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_DIRTRAVERSAL_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/File Inclusion/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_FILEINCLUSION_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/Insecure Management Interface/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_INSERCUREMGMTIFACE_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/LDAP Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_LDAPINJECTION_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/NoSQL Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_NOSQLINJECTION_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/Open Redirect/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_OPENREDIRECT_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/SQL Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_SQLINJECTION_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/Server Side Template Injection/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_SSTI_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/XSS Injection/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_XSS_FOLDER)
+	unzip -oj $(PAYLOADS_TMP_ZIP) "PayloadsAllTheThings-master/XXE Injection/Intruders/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_XXE_FOLDER)
+	rm -f $(PAYLOADS_TMP_ZIP)
 	
 	###get seclists###
 	sudo apt -y install seclists
 	ln -s /usr/share/seclists/ $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)
 	
+	###get payloads from github.com/orgs/payloadbox
+	wget -O $(PAYLOADS_TMP_ZIP) https://github.com/payloadbox/ssti-payloads/archive/refs/heads/master.zip
+	unzip -oj $(PAYLOADS_TMP_ZIP) "ssti-payloads-master/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_SSTI_FOLDER)
+	rm -f $(PAYLOADS_TMP_ZIP)
+	wget -O $(PAYLOADS_TMP_ZIP) https://github.com/payloadbox/xss-payload-list/archive/refs/heads/master.zip
+	unzip -oj $(PAYLOADS_TMP_ZIP) "xss-payload-list-master/Intruder/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_XSS_FOLDER)
+	rm -f $(PAYLOADS_TMP_ZIP)
+	wget -O $(PAYLOADS_TMP_ZIP) https://github.com/payloadbox/sql-injection-payload-list/archive/refs/heads/master.zip
+	unzip -oj $(PAYLOADS_TMP_ZIP) "sql-injection-payload-list-master/Intruder/detect/*" -d $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_PAYLOADS_FOLDER)/$(BLACKOPS_PAYL_SQLINJECTION_FOLDER)
+	rm -f $(PAYLOADS_TMP_ZIP)
 
 #Configure recon-ng
 recon-ng-setup: dont-run-as-root
