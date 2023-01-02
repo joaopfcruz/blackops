@@ -355,8 +355,8 @@ nmap-setup: dont-run-as-root
 	
 #Configure nmap
 wapiti-setup: dont-run-as-root
-	echo "Configuring wapiti-setup..."
-	sudo apt -y install wapiti-setup
+	echo "Configuring wapiti..."
+	sudo apt -y install wapiti
 	wapiti --update
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wapiti
 	cp -R etc/wapiti $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
