@@ -34,12 +34,12 @@ PAYLOADS_TMP_ZIP = "/tmp/payltmp.zip"
 WPSCAN_API_TOKEN_VAR_NAME = "WPSCAN_API_TOKEN"
 
 #A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed
-.PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup
+.PHONY: all dont-run-as-root env get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup sqlmap-setup
 #quiet make
 .SILENT:
 
 #Run all directives (except env which should run separately)
-all: get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup
+all: get-payloads recon-ng-setup censys-setup shodan-setup gobuster-setup whatweb-setup wpscan-setup droopescan-setup cloud_enum-setup nuclei-setup gospider-setup xspear-setup dalfox-setup nmap-setup wapiti-setup sqlmap-setup
 
 dont-run-as-root:
 	if id -u | egrep -q "^0$$"; then\
@@ -353,7 +353,7 @@ nmap-setup: dont-run-as-root
 	cp -R etc/nmap $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/nmap/*.sh
 	
-#Configure nmap
+#Configure wapiti
 wapiti-setup: dont-run-as-root
 	echo "Configuring wapiti..."
 	sudo apt -y install wapiti
@@ -361,3 +361,11 @@ wapiti-setup: dont-run-as-root
 	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wapiti
 	cp -R etc/wapiti $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
 	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/wapiti/*.sh
+
+#Configure sqlmap
+sqlmap-setup: dont-run-as-root
+	echo "Configuring sqlmap..."
+	sudo apt -y install sqlmap
+	rm -rf $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/sqlmap
+	cp -R etc/sqlmap $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)
+	chmod +x $(BLACKOPS_ENV_VAR_VALUE)/$(BLACKOPS_ETC_FOLDER)/sqlmap/*.sh
