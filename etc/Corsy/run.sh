@@ -24,7 +24,7 @@ sanitized_url=$(sed -e "s/[^A-Za-z0-9._-]/_/g" <<< "$url")
 BLACKOPS_DATA_FOLDER="${BLACKOPS_HOMEDIR}/data"
 OUTPUT_ORG_FOLDER="${BLACKOPS_DATA_FOLDER}/${workspace}"
 OUTPUT_EXPLOITING_FOLDER="${OUTPUT_ORG_FOLDER}/exploiting"
-OUTPUT_FILENAME="Corsy.out.${sanitized_url}.$(date +'%Y_%m_%dT%H_%M_%S').json"
+OUTPUT_FILENAME="Corsy.out.${sanitized_url::64}.$(date +'%Y_%m_%dT%H_%M_%S').json"
 
 if [ -z "${workspace}" ] || [ -z "${url}" ]; then
         usage
