@@ -26,7 +26,7 @@ BLACKOPS_PAYLOADS_FOLDER="${BLACKOPS_HOMEDIR}/payloads"
 TMP_PAYLOAD_FILE="/tmp/openredirpayloads.txt"
 OUTPUT_ORG_FOLDER="${BLACKOPS_DATA_FOLDER}/${workspace}"
 OUTPUT_EXPLOITING_FOLDER="${OUTPUT_ORG_FOLDER}/exploiting"
-OUTPUT_FILENAME="Oralyzer.out.${sanitized_url}.$(date +'%Y_%m_%dT%H_%M_%S').txt"
+OUTPUT_FILENAME="Oralyzer.out.${sanitized_url::64}.$(date +'%Y_%m_%dT%H_%M_%S').txt"
 
 if [ -z "${workspace}" ] || [ -z "${url}" ]; then
         usage
